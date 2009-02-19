@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<project name="Includes check" default="idl" basedir=".">
+
+	<taskdef name="idlcheck" 
+		      classname="com.byteslooser.idldepend.IDLCheckerTask" 
+			   classpath="../idldepend.jar"/>
+	
+	<target name="idl">
+		<idlcheck compiler="openorb"
+			       force="false" 
+				    checkAll="false" 
+					 verbose="debug" 
+					 targetDir="output" 
+			       dependsDir="dependencies">
+			<fileset dir=".">
+				<include name="includesB.idl" />
+			</fileset>
+			<include>
+				<pathelement path=".." />
+			</include>
+			<define name='JDK'/>
+		</idlcheck>
+	</target>
+
+</project>

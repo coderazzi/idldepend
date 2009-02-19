@@ -1,0 +1,11 @@
+   union U switch (long) 
+   {
+      case 1: long u1;
+      case 2: string u2;
+      case 3: long u3; 
+      case 4: struct C
+      				{
+      					long ab;
+      				} c;
+      				
+   };

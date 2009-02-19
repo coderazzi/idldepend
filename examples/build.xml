@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<project name="IdlDepend examples" default="idl" basedir=".">
+
+	<target name="dirs">
+		<mkdir dir="output"/>
+		<mkdir dir="dependencies"/>
+	</target>
+
+	<target name="includes" depends="dirs">
+		<ant antfile="includesBuild.xml" target="idl"/>
+	</target>
+
+	<target name="mapping" depends="dirs">
+		<ant antfile="mappingBuild.xml" target="idl"/>
+	</target>
+
+	<target name="structs" depends="dirs">
+		<ant antfile="nestedStructsBuild.xml" target="idl"/>
+	</target>
+
+	<target name="unions" depends="dirs">
+		<ant antfile="unionsBuild.xml" target="idl"/>
+	</target>
+
+	<target name="empty" depends="dirs">
+		<ant antfile="empty.xml" target="idl"/>
+	</target>
+
+	<target name="idl" depends="mapping, includes, structs, unions">
+	</target>
+
+	<target name="clean">
+		<delete dir="output"/>
+		<delete dir="dependencies"/>
+	</target>
+
+</project>

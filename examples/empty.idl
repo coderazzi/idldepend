@@ -1,0 +1,4 @@
+module ExceptionsOnJacorb2{
+exception ExportedException    {
+};
+};

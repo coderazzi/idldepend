@@ -1,0 +1,14 @@
+struct Foo;
+
+
+typedef sequence<Foo> SeqFoo;
+
+struct Foo
+{
+	long f;
+};
+
+interface Etwas
+{
+	SeqFoo op();
+};

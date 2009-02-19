@@ -1,0 +1,9 @@
+module Includes
+{
+	#include "includesA.idl"
+
+	interface Foo2
+	{
+		Foo too();
+	};
+};

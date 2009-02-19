@@ -1,0 +1,116 @@
+module Mapping
+{
+	//external consts produce interfaces with the name of the const. 
+	// No helpers or holders are required. 
+	const long ExternalConst=-1;
+	
+	//enumerations produce 3 files: the name of the enum, plus helper and holder
+	enum ExternalEnumeration { ENUM_0, ENUM_1};
+	
+	//struct produce 3 files: the name of the struct, plus helper and holder
+	struct ExternalStruct
+	{
+		long foo;
+	};
+	
+	//union produce 3 files: the name of the union, plus helper and holder
+	union ExternalUnion switch (short) 
+	{
+	  	case 1: long length;
+  		case 2: char character;
+	};
+	
+	//exception produce 3 files: the exception name, plus helper and holder
+	exception ExternalException
+	{
+	};
+
+	//valuetypes require the 3 usual files: name, holder and helper	
+	valuetype ExternalValueType{
+		public string s;
+  	};
+  	
+	//valuetypes with factories require an additional file: NameValueFactory	
+	valuetype ExternalValueTypeWithFactory {
+		public string s;
+	  	factory create(in string name);		
+  	};
+  	
+  	// valuebox require as well the 3 typical files, unless they are not build
+  	// over primitives
+	valuetype ExternalValueBox string;
+  	
+  	// valuebox built over non-primitives require only two files: helper and
+  	// holder
+	valuetype ExternalNonPrimtiveValueBox ExternalStruct;
+	
+	
+	//a typedef that does not involve sequences or arrays requires a helper
+	typedef long ExternalBasicTypedef;
+	
+	//a typedef that involves sequences or arrays requires a helper and holder
+	typedef sequence<long> ExternalSequenceTypedef;
+	
+  	
+	//interface produce 3 files: the name of the union, plus helper and holder
+   // Additionally, it's generated NameOperations and _NameStub.
+   // NamePOA and NamePOATie are optional.
+   // If AMI callback is supported, every interface seems to have another
+   // interface (with all the generated classes except the holder), with name
+   // AMI_nameHandler
+   // However, these class are only required on the client side.	
+	interface Iface
+	{
+		//internal consts do not produce additional files
+		const long InternalConst=-1;
+
+		//enumerations produce 3 files: the name of the enum, plus helper and holder
+		enum InternalEnumeration { ENUM_0, ENUM_1};
+	
+		//struct produce 3 files: the name of the struct, plus helper and holder
+		struct InternalStruct
+		{
+			long foo;
+		};
+	
+		//union produce 3 files: the name of the union, plus helper and holder
+		union InternalUnion switch (short) 
+		{
+	  		case 1: long length;
+  			case 2: char character;
+		};
+	
+		//exception produce 3 files: the exception name, plus helper and holder
+		exception InternalException
+		{
+		};
+	
+		//a typedef that does not involve sequences or arrays requires a helper
+		typedef long InternalBasicTypedef;
+	
+		//a typedef that involves sequences or arrays requires a helper and holder
+		typedef sequence<long> InternalSequenceTypedef;
+	
+  	
+	};
+	
+   // In case of and abstract interface, nor the Operations neither
+   // the POA or POATie are generated
+	abstract interface AbstractIface
+	{
+		void foo();
+	};
+
+#ifndef JDK
+   // For local interfaces (mappint 1.20), the same three basic files
+   // (basic, Helper, Holder) and the Operations file are required. For
+   // servers, it is needed as well a class _LocalBase.java, and, if TIE
+   // is generated, as well LocalTie.java
+	local interface LocalIface
+	{
+		//void foo();
+	};
+#endif
+
+	
+};

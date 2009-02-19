@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<project name="Mapping check" default="idl" basedir=".">
+
+	<taskdef name="idlcheck" 
+		      classname="com.byteslooser.idldepend.IDLCheckerTask" 
+			   classpath="../idldepend.jar"/>
+	
+	<target name="idl">
+		<idlcheck compiler="jdk"
+			       force="false" 
+					 side="allTIE"
+				    checkAll="false" 
+					 verbose="debug" 
+					 targetDir="output" 
+			       dependsDir="dependencies">
+			<fileset dir=".">
+				<include name="mapping.idl" />
+			</fileset>
+			<include>
+				<pathelement path=".." />
+			</include>
+			<define name='JDK'/>
+		</idlcheck>
+	</target>
+
+</project>

@@ -1,0 +1,14 @@
+
+struct A
+{
+	struct B
+	{
+		struct C
+		{
+			long lc;
+			long jk;
+		} sc;
+		long bl;
+	} bb;
+	long bl;
+};
