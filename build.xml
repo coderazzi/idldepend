@@ -8,12 +8,12 @@
 
 <project name="IDLdepend" default="all" basedir=".">
 
-	<property name="javacchome" value="/Users/luismi/Library/Java/javacc-4.0" />
+	<property name="javacchome" value="c:/development/javacc-4.2" />
 
 	<property name="src.dir" value="source" />
 	<property name="build.dir" value="bytecode" />
 	<property name="lib.dir" value="." />
-	<property name="grammar.dir" value="${src.dir}/com/byteslooser/idldepend/javacc/generated" />
+	<property name="grammar.dir" value="${src.dir}/net/coderazzi/idldepend/javacc/generated" />
 
 	<target name="clean">
 		 <delete dir="${build.dir}"/>
@@ -26,13 +26,13 @@
 	</target>
 
 	<target name="grammar" depends="prepare">
-		<javacc target="${src.dir}/com/byteslooser/idldepend/javacc/Preprocessor.jj"
+		<javacc target="${src.dir}/net/coderazzi/idldepend/javacc/Preprocessor.jj"
 						javacchome="${javacchome}"
 						outputdirectory="${grammar.dir}" />
-		<javacc target="${src.dir}/com/byteslooser/idldepend/javacc/Evaluator.jj"
+		<javacc target="${src.dir}/net/coderazzi/idldepend/javacc/Evaluator.jj"
 						javacchome="${javacchome}"
 						outputdirectory="${grammar.dir}" />
-		<javacc target="${src.dir}/com/byteslooser/idldepend/javacc/IDLParser.jj"
+		<javacc target="${src.dir}/net/coderazzi/idldepend/javacc/IDLParser.jj"
 						javacchome="${javacchome}"
 						outputdirectory="${grammar.dir}" />
 	</target>
