@@ -2,7 +2,7 @@
 <project name="Mapping check" default="idl" basedir=".">
 
 	<taskdef name="idlcheck" 
-		      classname="com.byteslooser.idldepend.IDLCheckerTask" 
+		      classname="net.coderazzi.idldepend.IDLCheckerTask" 
 			   classpath="../idldepend.jar"/>
 	
 	<target name="idl">
