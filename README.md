@@ -33,7 +33,7 @@ To speed up the process and avoid parsing unnecesarily the same files continuous
 
 This task does not launch the Java compiler, that is, its output are Java files and not directly the final bytecode.
 
-License and download <a name="LicenseAndDownload"/>
+<a name="LicenseAndDownload"/>License and download
 --------------------
 
 idldepend is delivered as it, without any responsabilities on the author. It is open source, it can be used or modified without any limitations.
@@ -60,7 +60,7 @@ Previous available versions:
 
 In case of using the source code, you need to have [Ant](http://jakarta.apache.org/ant/index.html) (to build the task) and [JavaCC](https://javacc.dev.java.net/) (only if modifying the grammars, to parse them). Please modify the ant script to define your own JavaCC home directory, and compile it just entering 'ant'.
 
-Version and CORBA compliance <a name="Version"/>
+<a name="Version"/>Version and CORBA compliance
 ----------------------------
 
 Initially built using Ant 1.4, the current version has been tested against Ant 1.7.0; please note that I do not regularly check if it works under other Ant versions (but I would be surprised if not).
@@ -90,7 +90,7 @@ Note that all these keywords have been added with CORBA 3.0, and, by now, I have
 
 idldepend supports the grammar defined by the OMG; it raises no warnings or errors even if the used compiler does not support some used features. For example, a valid IDL file could contain proper local interface definitions, which are not supported by the JDK compiler. idldepend will only warn about incorrect IDL constructs.
 
-Task's Attributes <a name="Attributes"/>
+<a name="Attributes"/>Task's Attributes
 -----------------
 
 | Attribute | Description | Required | Default value |
@@ -109,7 +109,7 @@ Task's Attributes <a name="Attributes"/>
 | preprocess | dismiss / store / storeFull / use / useFull  <br>Specifies the action on the preprocessed file, as described in the [section below](#UsingThePreprocessor). | no  | dismiss |
 | verbose | quiet / basic / debug  <br>Specifies the task's verbosity level | no  | basic |
 
-Nested Elements <a name="NestedElements"/>
+<a name="NestedElements"/>Nested Elements
 ---------------
 | Element | Description |
 | --- | --- |
@@ -159,7 +159,7 @@ Example
 Behaviour
 ---------
 
-### Using the preprocessor <a name='UsingThePreprocessor'/>
+### <a name='UsingThePreprocessor'/> Using the preprocessor
 
 idldepend can store the preprocessed file (the IDL file after the C preprocessor parses it), and even use it to generate the Java files. This feature is very valuable for those IDL compilers that lack a full-featured preprocessor (Jacorb has problems with basic macros, and the jdk compiler has as well problems with basic preprocessing functionality, like macros defined across several lines).
 
@@ -187,7 +187,7 @@ This functionality is specified with the attribute preprocess, which can have th
     *   The preprocessed file is used as input for the IDL compiler; note that in this case, the compiler will generate Java code for all the types found in the included files. Therefore, the attribute checkAll looses his meaning if this value is used.
     *   If the attribute force is set to true, the preprocessed file is still generated.
 
-### Using package and translate <a name='UsingPackageAndTranslate'/>
+###  <a name='UsingPackageAndTranslate'/>Using package and translate
 
 These modifiers affect to the packages under which the final Java files are generated. For example: package moduleA prefixA.prefixB converts the file moduleA/moduleB/file.java into prefixA/prefixB/moduleB/file.java The result of these modifications is not fully specified. idldepend just performs the translations made by the specific compiler, and each compiler behaves quite different.
 
@@ -243,7 +243,7 @@ Following is a brief description of its behaviour. In case of doubt, check direc
     *   orbix
         *   Not supported
 
-### Invoking the IDL compiler <a name='IDLCompiler'/>
+### <a name='IDLCompiler'/>Invoking the IDL compiler 
 
 A number of attributes and nested elements control how the IDL compiler will be invoked from idldepend. Of course, every single attribute or element modifies the way the IDL compiler is called, adding or modifying the parameters passed to it; this section refers to which compiler is invoked and how the idl files are passed.
 
@@ -262,13 +262,13 @@ Which compiler is invoked is specified via the attributes compiler and compilerP
 The callCompiler functionality has been introduced to deal with the OpenORB compiler, though it could be useful with other compilers as well. The OpenORB compiler contains currently a bug: if file a.idl includes the file b.idl and both are passed at once to the idl compiler, OpenORB will not generate the code for the types found in b.idl if it is passed in the command line after a.idl.  
 To work around this bug, idldepend will reorder the idl files, passing first those without dependencies to the others (currently, there are no mechanisms to disable this reordering)
 
-### Translation of compiler arguments <a name='Translation'/>
+###  <a name='Translation'/>Translation of compiler arguments
 
 Below is listed the translation of compiler arguments into the task parameters for the supported compilers.
 
 The lists are given following the compiler order. When a parameter is not supported, is explicitely writen. Note that the args parameter in the task allows to specify any other parameter, but in that case the task can become useless. When a parameter is not directly supported but it can still be specified using the args parameter without any problem, it is as well explicitely writen.
 
-#### JDK (as to 1.4.0) and IBM JDK (3.0) <a nme='JDK'/>
+#### <a nme='JDK'/>JDK (as to 1.4.0) and IBM JDK (3.0)
 
 | compiler argument | task parameter |
 | --- | --- |
@@ -377,7 +377,7 @@ The lists are given following the compiler order. When a parameter is not suppor
 | \-XgenerateValueFactory | Not supported (use args instead) |
 | \-XgenerateValueImpl | Not supported (use args instead) |
 
-#### Orbix (2000) <a nme='Orbix'/>
+#### <a name='Orbix'/> Orbix (2000)
 
 Please note that for this compiler, only the directly supported arguments are specified.  
 If no present in the table but still required, the args task attribute can be used.
@@ -398,7 +398,7 @@ In addition, if an argument is added via arg and this argument must be embedded 
 | \-w | \-verbose=quiet |
 | \-v | \-verbose=debug |
 
-### Additional notes <a name='notes'/>
+###  <a name='notes'/> Additional notes
 
 *   The idldepend grammar supports empty module definitions. The OMG specification declares that an empty module -that is, containing no nested definitions- is invalid; however, compilers like JDK allow it, and there is no reason for IdlDepend to stop the compilation.
 *   idldepend supports empty files (IDL files not defining types). In this case, IDLdepend will not fail, and it depends on the IDL compiler to handle them or fail, as the OMG IDL grammar does not allow those files.
@@ -430,7 +430,7 @@ In case of errors, the fastest way to verify what is happening is to make idldep
     By checking the content of this file, you can verify why idldepend is re-launching the idl compiler; in most of the cases, because some file-to-be-generated is missing. If this is not the case, please send me the idl file to verify its behaviour.
 *   If you get warnings like **"Error reading Messages File."** please note that the warning is issued by the JDK idl compiler, not by idldepend. This error can be solved in MacOsX by providing the location to the classes.jar file: `export CLASSPATH=/System/Library/Frameworks/JavaVM.framework/Classes/classes.jar`
 
-History changes <a name="History"/>
+<a name="History"/> History changes
 ---------------
 
 | Version 1.30 : 10th June 2009                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
@@ -464,7 +464,7 @@ History changes <a name="History"/>
 | Thanks to everybody who submitted bugs. In special, thanks to those who also submitted code corrections: Brian Wallis, Jeff Downs, Guillaume Codina, Andreas Ebbert and Duane Griffin.                                                                                                                                                                                                                                                                                                                                                                  |
 
 
-Bugs and Limitations <a name="Bugs"/>
+<a name="Bugs"/> Bugs and Limitations
 --------------------
 
 *   CORBA compliance support  
